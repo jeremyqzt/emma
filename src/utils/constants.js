@@ -82,7 +82,6 @@ export const SUPPORTED_LANGUAGES = [
   "vbnet",
   "verilog",
   "vhdl",
-  "xml",
   "xquery",
   "yaml",
 ];
