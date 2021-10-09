@@ -88,3 +88,14 @@ export const SUPPORTED_LANGUAGES = [
 ];
 
 export const TAB = Object.freeze({ SEARCH: 1, FAVOURITE: 2 });
+
+export const DEFAULT_NOTIF = {
+  insert: "bottom",
+  container: "bottom-right",
+  animationIn: ["animate__animated", "animate__fadeIn"],
+  animationOut: ["animate__animated", "animate__fadeOut"],
+  dismiss: {
+    duration: 3000,
+    onScreen: true,
+  },
+};

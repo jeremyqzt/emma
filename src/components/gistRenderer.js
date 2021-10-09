@@ -1,11 +1,9 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
-import Overlay from "react-bootstrap/Overlay";
-import Tooltip from "react-bootstrap/Tooltip";
 
 import SyntaxHighlight from "./syntaxHighlighter";
 
@@ -14,8 +12,8 @@ import "../styles/gists.css";
 const GistRenderer = (props) => {
   const files_obj = props.gist.files || {};
   const files = Object.keys(files_obj);
-  const [show, setShow] = useState(false);
   const target = useRef(null);
+  const isFavourites = props.isFavourites || false;
 
   return (
     <>
@@ -38,7 +36,7 @@ const GistRenderer = (props) => {
               <p>{`${props.gist.description}`}</p>
             </Row>
           </Col>
-          <Col xs={5}>
+          <Col xs={4}>
             <Row>
               <p>
                 <a
@@ -58,24 +56,29 @@ const GistRenderer = (props) => {
               }`}</p>
             </Row>
           </Col>
-          <Col xs={2} className={"favourite-btn-container"}>
-            <Button
-              ref={target}
-              variant="light"
-              onClick={() => {
-                setShow(!show);
-                props.addFavs({ ...props.gist });
-              }}
-            >
-              🌟 Favourite
-            </Button>
-            <Overlay target={target.current} show={show} placement="left">
-              {(props) => (
-                <Tooltip id="overlay-example" {...props}>
-                  Added To Favourites
-                </Tooltip>
-              )}
-            </Overlay>
+          <Col xs={3} className={"favourite-btn-container"}>
+            {!isFavourites ? (
+              <Button
+                ref={target}
+                variant="light"
+                disabled={props.alreadyFaved}
+                onClick={() => {
+                  props.addFavs({ ...props.gist });
+                }}
+              >
+                {!props.alreadyFaved ? "🌟 Favourite" : "✔️ Favourited"}
+              </Button>
+            ) : (
+              <Button
+                ref={target}
+                variant="light"
+                onClick={() => {
+                  props.removeFav(props.gist.id);
+                }}
+              >
+                {"🛑 Un-Favourite"}
+              </Button>
+            )}
           </Col>
         </Row>
       </Row>

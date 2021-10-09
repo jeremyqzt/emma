@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useApi } from "../hooks/hooks";
+import { store } from "react-notifications-component";
 
 import Header from "../components/header";
 import GistContainer from "../components/gistContainer";
@@ -11,32 +12,55 @@ import NoUser from "../components/noUser";
 import NoGists from "../components/noGists";
 import NoSearch from "../components/noSearches";
 
-import { TAB } from "../utils/constants";
+import { TAB, DEFAULT_NOTIF } from "../utils/constants";
 
 const Gist = () => {
   const [url, setUrl] = useState("");
   const [results, loading, refresh] = useApi(url);
 
   const [tab, setTab] = useState(TAB.SEARCH);
+
   const [favs, setFavs] = useState([]);
+  const [favsIds, setFavsIds] = useState({});
 
   const onClickSearch = (name) => {
     setUrl(`GET /users/${name}/gists`);
   };
 
   const onClickAddFavs = (gist) => {
-    setFavs([{ ...gist }, ...favs]);
+    const gistId = gist.id;
+
+    if (!Boolean(favsIds[gistId])) {
+      setFavsIds({ ...favsIds, [gistId]: true });
+      setFavs([{ ...gist }, ...favs]);
+      store.addNotification({
+        ...DEFAULT_NOTIF,
+        title: "Success",
+        message: "Added to favourites!",
+        type: "success",
+      });
+    }
   };
 
-  const onClickRemoveFavs = (gist) => {
-    setFavs([]);
+  const onClickRemoveFavs = (id) => {
+    if (Boolean(favsIds[id])) {
+      const newFavs = favs.filter((favGist) => favGist.id !== id);
+      setFavs(newFavs);
+      setFavsIds({ ...favsIds, [id]: false });
+
+      store.addNotification({
+        ...DEFAULT_NOTIF,
+        title: "Removed",
+        message: "Removed gist from favourites!",
+        type: "warning",
+      });
+    }
   };
 
   const noUser = results && results.status === 404 && !loading && url !== "";
   const noGists =
     results && results.data?.length === 0 && !loading && url !== "";
-
-  console.log(favs);
+  const noFavGists = favs.length === 0;
   return (
     <>
       <Header
@@ -59,13 +83,21 @@ const Gist = () => {
                 gists={results?.data}
                 loading={loading}
                 addFavs={onClickAddFavs}
+                favs={favsIds}
+                isFavourites={false}
               />
             ) : null}
           </>
         </Container>
       ) : (
         <Container>
-          <GistFavouritesContainer favourites={favs} />
+          {noFavGists ? <NoGists /> : null}
+
+          <GistFavouritesContainer
+            favourites={favs}
+            remove={onClickRemoveFavs}
+            isFavourites
+          />
         </Container>
       )}
     </>

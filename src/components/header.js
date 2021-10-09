@@ -64,7 +64,10 @@ const Header = (props) => {
         <Button
           className="me-5"
           variant="outline-secondary"
-          onClick={() => props.onRefresh()}
+          onClick={() => {
+            props.onRefresh();
+            props.setTab(TAB.SEARCH);
+          }}
         >
           Refresh
         </Button>

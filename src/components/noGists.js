@@ -12,7 +12,7 @@ const NoGists = () => {
       </Row>
       <Row className="justify-content-md-center mt-5">
         <Col xs={12} className="justify-content-md-center text-center">
-          ❌ No Gists For This User (Wow, Such Empty)
+          ❌ Wow, Such Empty - No Gists Here
         </Col>
       </Row>
     </>

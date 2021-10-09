@@ -5,7 +5,12 @@ const GistFavouritesContainer = (props) => {
   return (
     <>
       {allGists.map((gist, idx) => (
-        <GistRenderer gist={gist} key={`gist-${idx}`} />
+        <GistRenderer
+          gist={gist}
+          key={`gist-${idx}`}
+          removeFav={props.remove}
+          isFavourites={props.isFavourites}
+        />
       ))}
     </>
   );
