@@ -1,0 +1,40 @@
+.gist-container {
+  max-height: 300px;
+}
+
+.avatar_image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.syntax_highlighter {
+  max-height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.filename {
+  text-align: right;
+  font-family: Garamond, serif;
+  margin-right: 10px;
+}
+
+.favourite-btn-container {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.nav-header {
+  min-width: 200px;
+}
+
+.splash-img {
+  margin-top: 10vh;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
