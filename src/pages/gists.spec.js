@@ -8,7 +8,7 @@ import Gist from "./gists";
 
 const octoRespMock = {
   status: 200,
-  url: "https://api.github.com/users/benbennza1/gists",
+  url: "https://api.github.com/users/testName/gists",
   headers: {
     "cache-control": "public, max-age=60, s-maxage=60",
     "content-length": "903",

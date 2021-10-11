@@ -4,9 +4,11 @@ import "@testing-library/jest-dom";
 
 import Loading from "./loading";
 
-test("loads and displays greeting", async () => {
-  render(<Loading />);
+describe("Loading", () => {
+  it("Should render the loading element", async () => {
+    render(<Loading />);
 
-  const element = screen.getByTestId("loading-element");
-  expect(element).toBeTruthy();
+    const element = screen.getByTestId("loading-element");
+    expect(element).toBeTruthy();
+  });
 });
