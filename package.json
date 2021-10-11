@@ -22,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"src/**/*.{js,jsx}\""
   },
   "eslintConfig": {
     "extends": [
@@ -43,13 +44,6 @@
     ]
   },
   "devDependencies": {
-    "octomock": "^2.3.0"
-  },
-  "jest": {
-    "automock": false,
-    "setupFilesAfterEnv": [
-      "./jest/setupJest.js"
-    ],
-    "testEnvironment": "node"
+    "prettier": "^2.4.1"
   }
 }

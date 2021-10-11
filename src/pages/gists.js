@@ -23,8 +23,6 @@ const Gist = () => {
   const [favs, setFavs] = useState([]);
   const [favsIds, setFavsIds] = useState({});
 
-  console.log(results);
-
   const onClickSearch = (name) => {
     setUrl(`GET /users/${name}/gists`);
   };
