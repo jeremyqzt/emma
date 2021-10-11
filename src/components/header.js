@@ -13,7 +13,7 @@ const Header = (props) => {
   return (
     <Navbar bg="light">
       <Navbar.Brand className="ms-5 nav-header">
-        {props.tab === TAB.SEARCH ? "Search For A User" : "Favourites"}
+        {props.tab === TAB.SEARCH ? "Search For A User" : "Favourite Gists"}
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
