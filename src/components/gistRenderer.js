@@ -94,7 +94,7 @@ const GistRenderer = (props) => {
                       setLoadFavs(true);
                     }}
                   >
-                    {" ⚓Load Files"}
+                    {"⚓ Load Files"}
                   </Button>
                 ) : null}
               </Col>
