@@ -6,12 +6,11 @@ import Header from "./header";
 
 import { TAB } from "../utils/constants";
 
-
 describe("Header", () => {
   it("Should render the favourites tab", async () => {
-  render(<Header tab={TAB.FAVOURITE} />);
-  const favTest = await screen.findAllByText(/Favourite Gists/);
-  expect(favTest).toHaveLength(1);
+    render(<Header tab={TAB.FAVOURITE} />);
+    const favTest = await screen.findAllByText(/Favourite Gists/);
+    expect(favTest).toHaveLength(1);
   });
 
   it("Should render the search tab", async () => {

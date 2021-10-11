@@ -79,5 +79,6 @@ describe("Gist Favourites Container", () => {
     // 3 files
     const content = await screen.findAllByText(/12345/);
     expect(content).toHaveLength(3);
+    expect(fetch).toHaveBeenCalledTimes(3);
   });
 });

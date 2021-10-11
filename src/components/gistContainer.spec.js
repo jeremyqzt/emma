@@ -79,6 +79,7 @@ describe("Gist Container", () => {
     // 3 files
     const content = await screen.findAllByText(/123/);
     expect(content).toHaveLength(3);
+    expect(fetch).toHaveBeenCalledTimes(3);
   });
 
   it("Should render multiple gists and files with favourites", async () => {
@@ -97,6 +98,7 @@ describe("Gist Container", () => {
     // 3 files
     const content = await screen.findAllByText(/123/);
     expect(content).toHaveLength(3);
+    expect(fetch).toHaveBeenCalledTimes(3);
 
     // 1 Favourited
     const oneFav = await screen.findAllByText(/✔️ Favourited/);

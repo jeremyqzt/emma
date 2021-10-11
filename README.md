@@ -46,5 +46,6 @@ This is where I reflect on the project and determine what could have gone better
  * Swap out `SyntaxHighlighter` for one w/o console errors
  * Confirm if partial loading of each gist file is desirable (I.e. only first 10 are loaded for performance)
  * Evaluate and update page look/feel to match existing pages
+ * Perhaps re-evaluate how favourites are handled. Handling on FE is not a permeanent/performant solution.
  * Confirm that assets (i.e. images) are okay to be used w/o copyright issues...
 
