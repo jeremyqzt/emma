@@ -41,5 +41,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "octomock": "^2.3.0"
+  },
+  "jest": {
+    "automock": false,
+    "setupFilesAfterEnv": [
+      "./jest/setupJest.js"
+    ],
+    "testEnvironment": "node"
   }
 }

@@ -10,6 +10,7 @@ const GistFavouritesContainer = (props) => {
           key={`gist-${idx}`}
           removeFav={props.remove}
           isFavourites={props.isFavourites}
+          shouldFetchGists
         />
       ))}
     </>

@@ -38,6 +38,7 @@ const Header = (props) => {
             type="text"
             name="gistUsername"
             placeholder={"Enter Git Username"}
+            data-testid="user-input-element"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />

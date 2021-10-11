@@ -8,7 +8,12 @@ import { SUPPORTED_LANGUAGES } from "../utils/constants";
 
 const SyntaxHighlight = (props) => {
   const [file_url] = useState(props.file.raw_url);
-  const [resp, loading] = useFetch(file_url, false);
+  const [resp, loading] = useFetch(
+    file_url,
+    props.skip || false,
+    `This gist's files has been skipped for performance reasons.
+ Press ⚓Load Files to fetch the file content.`
+  );
   const language = (props.file.language || "").toLowerCase();
   const supported = SUPPORTED_LANGUAGES.includes(language);
   const codeText = resp || "";

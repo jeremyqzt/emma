@@ -98,3 +98,5 @@ export const DEFAULT_NOTIF = {
     onScreen: true,
   },
 };
+
+export const MAX_GISTS_RENDER = 10;

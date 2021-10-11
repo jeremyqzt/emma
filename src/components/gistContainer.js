@@ -1,4 +1,5 @@
 import GistRenderer from "./gistRenderer";
+import { MAX_GISTS_RENDER } from "../utils/constants";
 
 const GistContainer = (props) => {
   const allGists = props.gists || [];
@@ -13,6 +14,7 @@ const GistContainer = (props) => {
               gist={gist}
               key={`gist-${idx}`}
               isFavourites={props.isFavourites}
+              shouldFetchGists={idx < MAX_GISTS_RENDER}
             />
           ))
         : null}

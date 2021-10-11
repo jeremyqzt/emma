@@ -37,7 +37,7 @@ export const useApi = (url) => {
   return [result, loading, refresh];
 };
 
-export const useFetch = (url, skip) => {
+export const useFetch = (url, skip, skipReason = "") => {
   const cache = useRef({});
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState("");
@@ -45,7 +45,11 @@ export const useFetch = (url, skip) => {
   useEffect(() => {
     let cancelled = false;
 
-    if (!url || skip) return;
+    if (skip) {
+      setData(skipReason);
+      return;
+    }
+    if (!url) return;
     const fetchData = async () => {
       setLoading(true);
       if (cache.current[url]) {
@@ -74,7 +78,7 @@ export const useFetch = (url, skip) => {
     return () => {
       cancelled = true;
     };
-  }, [url, skip]);
+  }, [url, skip, skipReason]);
 
   return [data, loading];
 };

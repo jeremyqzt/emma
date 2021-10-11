@@ -2,9 +2,9 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import GistContainer from "./gistContainer";
+import GistFavouritesContainer from "./favouriteGists";
 
-const exampleGists = [
+const favouriteGists = [
   {
     url: "https://api.github.com/gists/3cd7cc4f15b0f104161b184433200610",
     id: "1",
@@ -47,14 +47,14 @@ const exampleGists = [
   },
 ];
 
-describe("Gist Container", () => {
+describe("Gist Favourites Container", () => {
   let originalFetch;
 
   beforeEach(() => {
     originalFetch = global.fetch;
     global.fetch = jest.fn(() =>
       Promise.resolve({
-        text: () => Promise.resolve("123"),
+        text: () => Promise.resolve("12345"),
       })
     );
   });
@@ -63,8 +63,8 @@ describe("Gist Container", () => {
     global.fetch = originalFetch;
   });
 
-  it("Should render multiple gists and files", async () => {
-    render(<GistContainer gists={exampleGists} favs={{}} />);
+  it("Should render multiple gists and files as favourites", async () => {
+    render(<GistFavouritesContainer favourites={favouriteGists} />);
 
     // Seeing the text on screen before timeout is enough
     const userName = await screen.findAllByText(/testName/);
@@ -74,32 +74,10 @@ describe("Gist Container", () => {
     // 2 Gists
     expect(userName).toHaveLength(2);
 
-    await waitFor(() => screen.findAllByText(/123/));
+    await waitFor(() => screen.findAllByText(/12345/));
 
     // 3 files
-    const content = await screen.findAllByText(/123/);
+    const content = await screen.findAllByText(/12345/);
     expect(content).toHaveLength(3);
-  });
-
-  it("Should render multiple gists and files with favourites", async () => {
-    render(<GistContainer gists={exampleGists} favs={{ 2: true }} />);
-
-    // Seeing the text on screen before timeout is enough
-    const userName = await screen.findAllByText(/testName/);
-    await screen.findAllByText(/This is my test./);
-    await screen.findAllByText(/🌟 Favourite/);
-
-    // 2 Gists
-    expect(userName).toHaveLength(2);
-
-    await waitFor(() => screen.findAllByText(/123/));
-
-    // 3 files
-    const content = await screen.findAllByText(/123/);
-    expect(content).toHaveLength(3);
-
-    // 1 Favourited
-    const oneFav = await screen.findAllByText(/✔️ Favourited/);
-    expect(oneFav).toHaveLength(1);
   });
 });
